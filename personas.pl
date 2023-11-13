@@ -1,0 +1,14 @@
+persona(luis,20,soltero).
+persona(juan,72,viudo).
+persona(pedro,40,casado).
+persona(julia,17,casada).
+persona(maria,46,soltera).
+persona(andres,50,casado).
+persona(rocio,67,soltera).
+persona(joaquin,15,soltero).
+persona(cecilia,35,soltera).
+persona(felicia,60,soltera).
+persona(santiago,45,casado).
+persona(veronica,34,casada).
+persona(eugenia,70,viuda).
+persona(carlos,73,casado).
