@@ -2,17 +2,23 @@
 /* i - escribir los primeros n numero pares */
 npares(0, [0]).
 npares(X, [X|T]) :- 
-    X > 1, 0 is X mod 2, Y is X - 2, npares(Y, T).
+    X > 1, 0 is X mod 2, Y is X - 2, npares(Y, T), !.
+npares(X, T) :- 
+    X > 1, 1 is X mod 2, Y is X - 1, npares(Y, T).
 
 /* consultar */
-nimpares(1, [1]). 
+nimpares(1, [1]) :- !. 
 nimpares(X, [X|T]) :- 
-    X > 1, 1 is X mod 2, Y is X - 1, nimpares(Y, T).
+    X > 1, 1 is X mod 2, Y is X - 2, nimpares(Y, T), !.
+nimpares(X, T) :- 
+    X > 1, 0 is X mod 2, Y is X - 1, nimpares(Y, T).
 
-/* ii - consultar - calcular la suma de sus digitos */
-nparesum(0, [0], X).
+/* ii - calcular la suma de sus digitos */
+nparesum(0, [0], 0).
 nparesum(X, [X|T], R) :- 
-    X > 1, 0 is X mod 2, Y is X - 2, R is X+Y, nparesum(Y, T, Q).
+    X > 1, 0 is X mod 2, Y is X - 2, nparesum(Y, T, Q), R is X+Q, !.
+nparesum(X, T, Q) :- 
+    X > 1, 1 is X mod 2, Y is X - 1, nparesum(Y, T, Q).
 
 /* iii - consultar - encontrar el digito de mayor valor 
 ¿de una lista desordenada cualquiera? ¿de la lista de pares? */
