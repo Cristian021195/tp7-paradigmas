@@ -1,12 +1,5 @@
-/*  COMANDOS
-    - Actions: (; for next solution, a for all solutions, RET to stop) ? d
-    - Salida por consola: write('hello, world'). 
-*/
+/* a - Escribe en prolog los hechos de la relacion progenitor, teniendo en cuenta el siguiente arbol genealogico de la Familia de Harry Potter */
 
-/*progenitor(yo, masculino(hugoG)).
-progenitor(yo, femenino(mariaR)).*/
-
-/* PUNTO 1a */
 progenitor(lilyEvans, grandpaEvans).
 progenitor(jamesPotter, grandpaPotter).
 progenitor(harry, jamesPotter).
@@ -32,21 +25,42 @@ progenitor(hugo, hermione).
 /*abuelo(X,Z) :- progenitor(X,Y), progenitor(Y,Z).*/
 abuelos(X,Y) :- progenitor(X,Z), progenitor(Z,Y).
 
-/* PUNTO 1b 
+/* b - Indica que responde Prolog a las siguientes preguntas: 
     - progenitor(harry, X). : jamesPotter y lilyEvans
     - progenitor(X, rose). : no exite, rose no tiene hijos
     - progenitor(mollyW, X), progenitor(X, hugo). : no existen
     - progenitor(X, fred), progenitor(X, ron). : no, xq es conjuncion
 */
 
-/* PUNTO 1c 
+/* c - ¿Como formularia las sigientes preguntas en Prolog?
     - ¿Quien es el progenitor de Ginny?: mollyW y arthurW, progenitor(ginny, X).
     - ¿Tiene Hermione algún hijo?: rose, y hugo, progenitor(X, hermione).
     - ¿Quienes son los abuelas de Lily Luna?: jamesPotter, lilyEvans, mollyW, arthurW , abuelo(lilyLuna, X). 
 */
+/* c - ¿Como formularia las sigientes preguntas en Prolog?
+        ¿Quien es el progenitor de Ginny?:
+            progenitor(ginny, X).
+        ¿Tiene Hermione algun hijo?:             
+        ¿Quienes son los abuelos de lily luna?
+            abuelo(lilyLuna, X). 
+
+    d)  Ejemplo: padreDe(Y,X) :- progenitor(Y, X), masculino(X).
+        Expresar en termino que la relacion padreDe se puede expresar con la siguiente regla en prolog
+
+            Madre: madreDe(Y,X) :- progenitor(Y, X), femenino(X).
+            hijoDe(X,Y) :- progenitor(X,Y), masculino(X).
+            hijaDe :- hija(Y,X), femenino(X).
+            abueloDe :- abuelo(X,Z), masculino(Z).
+            abuelaDe :- abuelo(X,Z), femenino(Z).
+            hermanos :- progenitor(X,hijo(Y, Z)), /X.
+            
+*/
 
 
-/* PUNTO 1d */
+/* d - Agregar los predicados femenino y masculino para cada uno de los integrantes de la 
+Familia de Harry Potter. Ademas expresar las relaciones: 
+    Madre, hijo/hija, abuelo/abuela, hermanos, primo prima, tio tia  
+*/
 masculino(grandpaEvans).
 masculino(grandpaPotter).
 masculino(harry).
@@ -84,40 +98,10 @@ primos(X,Y) :- abuelos(X,Z) ,abuelos(Y,Z), X\=Y.
 primoDe(X,Y) :- abueloDe(X,Z),abueloDe(Y,Z), masculino(Y), X\=Y.
 primaDe(X,Y) :- abuelaDe(X,Z) ,abuelaDe(Y,Z), femenino(Y), X\=Y.
 
-/* PUNTO 1e 
+/* e - ¿Como formularia ? 
     bisabueloDe(X, Y) :- abuelos(X,Z), progenitor(Z, Y).
 */
 
 
-/*masculino(ron).*/
-
-/*hijo(hermione, rose).
-hijo(hermione, hugo).*/
-
-/*abuelos(X,Z) :- progenitor(X,Y), progenitor(Y,Z).*/
-
-/*
-    c) 
-        ¿Quien es el progenitor de Ginny?:
-            progenitor(ginny, X).
-        ¿Tiene Hermione algun hijo?: 
-            
-        ¿Quienes son los abuelos de lily luna?
-            abuelo(lilyLuna, X). 
-
-    d)  Ejemplo: padreDe(Y,X) :- progenitor(Y, X), masculino(X).
-        Expresar en termino que la relacion padreDe se puede expresar con la siguiente regla en prolog
-            Madre: madreDe(Y,X) :- progenitor(Y, X), femenino(X).
-            
-            hijoDe(X,Y) :- progenitor(X,Y), masculino(X).
-            hijaDe :- hija(Y,X), femenino(X).
-
-            abueloDe :- abuelo(X,Z), masculino(Z).
-            abuelaDe :- abuelo(X,Z), femenino(Z).
-
-            hermanos :- progenitor(X,hijo(Y, Z)), /X.
-
-            
-*/
 
 
