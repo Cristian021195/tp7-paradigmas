@@ -6,7 +6,6 @@ npares(X, [X|T]) :-
 npares(X, T) :- 
     X > 1, 1 is X mod 2, Y is X - 1, npares(Y, T).
 
-/* consultar */
 nimpares(1, [1]) :- !. 
 nimpares(X, [X|T]) :- 
     X > 1, 1 is X mod 2, Y is X - 2, nimpares(Y, T), !.
@@ -20,8 +19,18 @@ nparesum(X, [X|T], R) :-
 nparesum(X, T, Q) :- 
     X > 1, 1 is X mod 2, Y is X - 1, nparesum(Y, T, Q).
 
-/* iii - consultar - encontrar el digito de mayor valor 
+ndigitsum(0, [0], 0) :- !.
+ndigitsum(X, [X|T], R) :-
+    Y is X - 1, ndigitsum(Y, T, Q), R is X + Q.
+
+
+/* iii - encontrar el digito de mayor valor H > A -> M = H ; M = A.
+(H > A, R = H; R = A).
 ¿de una lista desordenada cualquiera? ¿de la lista de pares? */
+mayordigito([X], X).
+mayordigito([H | T], R) :-
+    mayordigito(T, A),
+    (H > A, R = H; R = A).
 
 /* b */
 /* i - crear una lista con los n primeros numeros naturales */
